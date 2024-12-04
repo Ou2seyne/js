@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application MonoPage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-100 font-sans leading-relaxed">
+
+  <!-- Header -->
+  <header class="bg-blue-700 text-white p-6 shadow-lg">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-3xl font-bold">Application MonoPage</h1>
+      <nav>
+        <button id="view-connexion" class="text-white hover:underline focus:outline-none px-4 py-2">Se connecter</button>
+        <button id="view-inscription" class="ml-6 text-white hover:underline focus:outline-none px-4 py-2">S'inscrire</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-4 py-10">
+    <!-- Article Detail Section -->
+    <div id="article-detail" class="bg-white p-8 rounded-lg shadow-xl hidden">
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">Titre de l'article</h2>
+      <p class="text-gray-600">Chargement de l'article...</p>
+    </div>
+  </main>
+
+  <!-- Modal Connexion -->
+  <div id="connexion-modal" class="fixed inset-0 bg-gray-800 bg-opacity-60 flex items-center justify-center hidden">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Se connecter</h2>
+      <form id="login-form">
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700">Adresse email</label>
+          <input type="email" id="email" name="email" required class="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div class="mb-6">
+          <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+          <input type="password" id="password" name="password" required class="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">Se connecter</button>
+        <button type="button" id="close-connexion-modal" class="mt-4 text-sm text-gray-500 hover:underline w-full">Annuler</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Inscription -->
+  <div id="inscription-modal" class="fixed inset-0 bg-gray-800 bg-opacity-60 flex items-center justify-center hidden">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
+      <h2 class="text-2xl font-semibold text-gray-900 mb-6 text-center">Créer un compte</h2>
+      <form id="signup-form">
+        <div class="mb-4">
+          <label for="prenom" class="block text-sm font-medium text-gray-700">Prénom</label>
+          <input type="text" id="prenom" name="prenom" required class="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div class="mb-4">
+          <label for="nom" class="block text-sm font-medium text-gray-700">Nom</label>
+          <input type="text" id="nom" name="nom" required class="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block text-sm font-medium text-gray-700">Adresse email</label>
+          <input type="email" id="email-signup" name="email" required class="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-sm font-medium text-gray-700">Mot de passe</label>
+          <input type="password" id="password-signup" name="password" required class="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <div class="mb-6">
+          <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirmer le mot de passe</label>
+          <input type="password" id="confirm-password" name="confirm-password" required class="mt-1 px-4 py-2 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">S'inscrire</button>
+        <button type="button" id="close-inscription-modal" class="mt-4 text-sm text-gray-500 hover:underline w-full">Annuler</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

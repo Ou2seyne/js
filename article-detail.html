@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Détail de l'article</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white p-4">
+    <h1 class="text-2xl font-bold">Détail de l'Article</h1>
+  </header>
+
+  <!-- Contenu de l'article -->
+  <main class="container mx-auto p-6">
+    <div id="article-detail" class="bg-white p-6 rounded-lg shadow-lg">
+      <p>Chargement de l'article...</p>
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-4 mt-8 text-center">
+    <p>&copy; 2024 Gestion des Articles. Tous droits réservés.</p>
+  </footer>
+
+  <script type="module">
+    document.addEventListener("DOMContentLoaded", async function () {
+      // Get the article ID from the URL query parameters
+      const articleId = new URLSearchParams(window.location.search).get('id');
+      if (!articleId) {
+        alert('Aucun article trouvé. Veuillez vérifier l\'ID de l\'article dans l\'URL.');
+        return;
+      }
+
+      try {
+        // Fetch the article details from the API
+        const response = await fetch(`http://s3-4131.nuage-peda.fr/forum/api/articles/${articleId}`);
+        
+        // Check if the response is ok
+        if (!response.ok) {
+          console.error('Erreur de réponse API:', response.statusText);
+          alert('Erreur lors du chargement de l\'article. Vérifiez l\'ID ou l\'API.');
+          return;
+        }
+
+        // Parse the article JSON data
+        const article = await response.json();
+        console.log('Article récupéré:', article);
+
+        // Update the page with the article details
+        const articleDetail = document.getElementById('article-detail');
+        if (article && article.titre && article.contenue && article.createdAt) {
+          articleDetail.innerHTML = `
+            <h2 class="text-2xl font-bold mb-4">${article.titre}</h2>
+            <p class="text-gray-700">${article.contenue}</p>
+            <p class="text-sm text-gray-500 mt-4">Publié le ${new Date(article.createdAt).toLocaleDateString()}</p>
+          `;
+        } else {
+          articleDetail.innerHTML = '<p>Article non trouvé ou données invalides.</p>';
+        }
+      } catch (error) {
+        console.error('Erreur lors de la récupération de l\'article:', error);
+        alert('Une erreur est survenue lors du chargement de l\'article.');
+      }
+    });
+  </script>
+
+</body>
+
+</html>
